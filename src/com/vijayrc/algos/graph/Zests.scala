@@ -4,7 +4,6 @@ import java.util.UUID
 import org.scalatest.FunSuite
 
 class Zests extends FunSuite{
-
   test("should do depth first search"){
     val graph = sample
     graph.print

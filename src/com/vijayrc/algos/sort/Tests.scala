@@ -19,9 +19,6 @@ class Tests extends FunSuite{
     sort.on(items)
     show("after",items)
   }
-
-  private def show(tag:String, items: Array[Value]) {
-    println(tag+":"+items.foreach(x => print(x + "|")))
-  }
+  private def show(tag:String, items: Array[Value]) { println(tag+":"+items.foreach(x => print(x + "|")))}
 
 }

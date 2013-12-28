@@ -2,6 +2,10 @@ package com.vijayrc.algos.tree.binary
 
 import com.vijayrc.algos.common.Value
 
+/**
+ * without pointers, use array arithmetic to store your tree.
+ * tree is stored in a flat array
+ */
 class NoLinks(sz:Int) {
   private val arr = new Array[Value](sz)
 

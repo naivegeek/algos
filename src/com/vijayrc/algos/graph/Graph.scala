@@ -13,42 +13,26 @@ import java.util.UUID
 class Edge(val node:Node, val weight:Int) {
   def print(){println("\t"+"|"+node.value+"|"+weight)}
 }
-
 class Node(val key:UUID,val value:Any) {
   val edges  = new mutable.MutableList[Edge]
   var seen = false
-
-  def print(){
-      println(value)
-      edges.map(edge => edge.print())
-      println("-------")
-  }
+  def print(){println(value);edges.map(edge => edge.print());println("-------")}
+  override def equals(obj: scala.Any): Boolean = { key.equals(obj.asInstanceOf[Node].key)}
 
   def addEdge(edge:Edge,directed:Boolean){
     if(edge.node == this) return
     if(!edges.contains(edge)) edges.+=(edge)
     if(!directed) edge.node.addEdge(new Edge(this,edge.weight),directed = true)
   }
-
   def unvisitedEdgeNode:Node = {
     edges.find(edge => !edge.node.seen) match{
       case Some(edge) => edge.node
       case None => null
     }
   }
-
-  override def equals(obj: scala.Any): Boolean = {
-    key.equals(obj.asInstanceOf[Node].key)
-  }
 }
-
 class Graph {
   val nodes = new ListBuffer[Node]
   def addNode(node:Node) = nodes += node
   def print = nodes.map{node => node.print()}
 }
-
-
-
-
-

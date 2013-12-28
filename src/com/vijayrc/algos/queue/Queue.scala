@@ -48,6 +48,7 @@ class WithArray(val initialSz:Integer) extends Queue{
 }
 /**
  * With pointers to track head and tail
+ * No need to worry about growth tracking
  */
 class WithLinks extends Queue{
   var head:Node = null
