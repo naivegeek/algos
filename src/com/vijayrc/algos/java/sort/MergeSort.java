@@ -1,5 +1,7 @@
 package com.vijayrc.algos.java.sort;
 
+import org.junit.Before;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,5 +48,12 @@ public class MergeSort<T extends Comparable> extends AbstractSort<T> {
             input.set(i, C.get(i));
         }
     }
+    public static class MergeSortTest extends SortTest{
+        @Before
+        public void setup(){
+            plug(new MergeSort());
+        }
+    }
+
 
 }

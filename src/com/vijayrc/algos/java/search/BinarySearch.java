@@ -1,6 +1,11 @@
 package com.vijayrc.algos.java.search;
 
+import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.List;
+
+import static junit.framework.Assert.assertEquals;
 
 /**
  *
@@ -23,4 +28,17 @@ public class BinarySearch<T extends Comparable> {
         if (compare > 0) return realFind(t, input, mid + 1, end);
         return -1;
     }
+
+    public static class BinarySearchTest {
+
+        @Test
+        public void shouldWork() {
+            BinarySearch<String> bs = new BinarySearch<String>();
+            assertEquals(new Integer(1), bs.find("B", Arrays.asList("A", "B", "C", "D")));
+            assertEquals(new Integer(2), bs.find("C", Arrays.asList("A", "B", "C", "D")));
+            assertEquals(new Integer(3), bs.find("D", Arrays.asList("A", "B", "C", "D")));
+            assertEquals(new Integer(0), bs.find("A", Arrays.asList("A", "B", "C", "D")));
+        }
+    }
+
 }

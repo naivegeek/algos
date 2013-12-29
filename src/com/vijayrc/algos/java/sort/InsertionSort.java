@@ -1,5 +1,7 @@
 package com.vijayrc.algos.java.sort;
 
+import org.junit.Before;
+
 import java.util.List;
 
 /**
@@ -22,5 +24,12 @@ public class InsertionSort<T extends Comparable> extends AbstractSort<T>{
                 if (input.get(j).compareTo(input.get(j - 1)) < 0)
                     swap(input, j, j - 1);
     }
+    public static class InsertionSortTest extends SortTest{
+        @Before
+        public void setup(){
+            plug(new InsertionSort());
+        }
+    }
+
 
 }

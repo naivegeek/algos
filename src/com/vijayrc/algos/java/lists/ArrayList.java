@@ -1,5 +1,10 @@
 package com.vijayrc.algos.java.lists;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+
 /**
  *
  * log2n doubling for n insertions if we start with a array of size 1
@@ -29,4 +34,22 @@ public class ArrayList<T extends Object> {
     public Integer size() {
         return array.length;
     }
+    public static class ArrayListTest {
+        private ArrayList<String> list;
+
+        @Before
+        public void setup(){
+            list = new ArrayList<String>(2);
+        }
+
+        @Test
+        public void shouldAddElement() {
+            list.add("A");
+            list.add("B");
+            list.add("C");
+            list.add("D");
+            assertEquals(new Integer(4),list.size());
+        }
+    }
+
 }

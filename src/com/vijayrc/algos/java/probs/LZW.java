@@ -2,6 +2,9 @@ package com.vijayrc.algos.java.probs;
 
 import java.util.*;
 import com.vijayrc.algos.java.lists.Queue;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertNotNull;
 
 /**
  * BABAABAZBABAABAZ
@@ -37,6 +40,16 @@ public class LZW {
     }
     public List<Integer> codes() {
         return codes;
+    }
+    public static class LZWTest {
+        @Test
+        public void shouldWork() {
+            LZW lzw = new LZW();
+            String input = "BABAABAZBABAABAZ";
+            lzw.compress(input);
+            assertNotNull(lzw.codes());
+        }
+
     }
 
 }

@@ -1,5 +1,7 @@
 package com.vijayrc.algos.java.sort;
 
+import org.junit.Before;
+
 import java.util.List;
 
 /**
@@ -22,4 +24,11 @@ public class SelectionSort<T extends Comparable> extends AbstractSort<T> {
                 if (input.get(j).compareTo(input.get(i)) < 0)
                     swap(input, j, i);
     }
+    public static class SelectionSortTest extends SortTest {
+        @Before
+        public void setup(){
+            plug(new SelectionSort());
+        }
+    }
+
 }

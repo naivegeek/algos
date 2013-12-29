@@ -4,9 +4,14 @@ package com.vijayrc.algos.java.trees.bottom;
 
 import com.vijayrc.algos.java.trees.nodes.BigNode;
 import com.vijayrc.algos.java.utilities.Print;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static junit.framework.Assert.assertNotNull;
 
 public class BottomUpTree<T extends Comparable> {
     private BigNode<T> root;
@@ -47,5 +52,22 @@ public class BottomUpTree<T extends Comparable> {
        new Print().with(root);
     }
 
+    public static class BottomUpTreeTest {
+        private BottomUpTree<String> tree;
+
+        @Before
+        public void setup() {
+            tree = new BottomUpTree<String>(3);
+        }
+
+        @Test
+        public void shouldWork() {
+            BigNode<String> root = tree.on(Arrays.asList("Bebe", "Butters", "Cartman", "Clyde",
+                    "Jimmy", "Kenny", "Kyle", "Stan",
+                    "Timmy", "Token", "Wendy"));
+            assertNotNull(root);
+            tree.print();
+        }
+    }
 
 }

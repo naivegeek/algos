@@ -1,5 +1,7 @@
 package com.vijayrc.algos.java.sort;
 
+import org.junit.Before;
+
 import java.util.List;
 
 public class QuickSort<T extends Comparable> extends AbstractSort<T> {
@@ -27,4 +29,11 @@ public class QuickSort<T extends Comparable> extends AbstractSort<T> {
         quickie(input.subList(0, l));
         quickie(input.subList(l, input.size()));
     }
+    public static class QuickSortTest extends SortTest{
+        @Before
+        public void setup(){
+            plug(new QuickSort());
+        }
+    }
+
 }

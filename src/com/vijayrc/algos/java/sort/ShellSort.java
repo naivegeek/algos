@@ -1,5 +1,7 @@
 package com.vijayrc.algos.java.sort;
 
+import org.junit.Before;
+
 import java.util.List;
 
 /**
@@ -24,4 +26,11 @@ public class ShellSort<T extends Comparable> extends AbstractSort<T> {
             gap--;
         }
     }
+    public static class ShellSortTest extends SortTest{
+        @Before
+        public void setup(){
+            plug(new ShellSort());
+        }
+    }
+
 }

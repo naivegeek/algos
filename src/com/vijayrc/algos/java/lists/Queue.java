@@ -1,5 +1,9 @@
 package com.vijayrc.algos.java.lists;
 
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+
 public class Queue<T extends Object> {
     private Node<T> head;
     private Node<T> tail;
@@ -27,5 +31,19 @@ public class Queue<T extends Object> {
     public boolean isEmpty(){
         return head == null;
     }
+
+    public class QueueTest {
+        @Test
+        public void shouldWork() {
+            Queue<String> q = new Queue<String>();
+            q.put("A");
+            q.put("B");
+            q.put("C");
+            assertEquals("A",q.get());
+            assertEquals("B",q.get());
+            assertEquals("C",q.get());
+        }
+    }
+
 
 }

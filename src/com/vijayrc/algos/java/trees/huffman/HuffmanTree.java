@@ -1,8 +1,14 @@
 package com.vijayrc.algos.java.trees.huffman;
 
 import com.vijayrc.algos.java.trees.nodes.Node;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static junit.framework.Assert.assertNotNull;
 
 public class HuffmanTree<T extends Comparable> {
 
@@ -47,4 +53,24 @@ public class HuffmanTree<T extends Comparable> {
     public Node<T> root() {
         return root;
     }
+    public static class HuffmanTreeTest {
+
+        private HuffmanTree<String> tree;
+
+        @Before
+        public void setup(){
+            tree = new HuffmanTree<String>();
+            tree.on(Arrays.asList("Bebe", "Butters", "Cartman", "Clyde",
+                    "Jimmy", "Kenny", "Kyle", "Stan",
+                    "Timmy", "Token", "Wendy"));
+        }
+
+        @Test
+        public void shouldWork() {
+            assertNotNull(tree.root());
+            tree.print();
+        }
+
+    }
+
 }

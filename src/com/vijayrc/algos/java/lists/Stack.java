@@ -1,5 +1,9 @@
 package com.vijayrc.algos.java.lists;
 
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+
 public class Stack<T extends Object> {
     private Node<T> tail;
 
@@ -17,5 +21,20 @@ public class Stack<T extends Object> {
         }
         return null;
     }
+
+    public static class StackTest {
+
+        @Test
+        public void shouldWork() {
+            Stack<String> stack = new Stack<String>();
+            stack.push("A");
+            stack.push("B");
+            stack.push("C");
+            assertEquals("C",stack.pop());
+            assertEquals("B",stack.pop());
+            assertEquals("A",stack.pop());
+        }
+    }
+
 
 }

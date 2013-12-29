@@ -1,5 +1,7 @@
 package com.vijayrc.algos.java.sort;
 
+import org.junit.Before;
+
 import java.util.List;
 
 /**
@@ -26,4 +28,11 @@ public class BubbleSort<T extends Comparable> extends AbstractSort<T> {
             if (!swapped) break;
         }
     }
+    public class BubbleSortTest extends SortTest{
+        @Before
+        public void setup(){
+            plug(new BubbleSort());
+        }
+    }
+
 }
