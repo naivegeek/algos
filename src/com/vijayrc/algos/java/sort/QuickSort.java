@@ -5,13 +5,10 @@ import org.junit.Before;
 import java.util.List;
 
 public class QuickSort<T extends Comparable> extends AbstractSort<T> {
-
     @Override
-    public void on(List<T> input) {
-        quickie(input);
-    }
+    public void on(List<T> input) {recurse(input);}
 
-    private void quickie(List<T> input) {
+    private void recurse(List<T> input) {
         if (input.size() < 2) return;
         int m = input.size() / 2;
         T mid = input.get(m);
@@ -26,14 +23,12 @@ public class QuickSort<T extends Comparable> extends AbstractSort<T> {
             }
         }
         if (l >= input.size()) return;
-        quickie(input.subList(0, l));
-        quickie(input.subList(l, input.size()));
+        recurse(input.subList(0, l));
+        recurse(input.subList(l, input.size()));
     }
     public static class QuickSortTest extends SortTest{
         @Before
-        public void setup(){
-            plug(new QuickSort());
-        }
+        public void setup(){plug(new QuickSort());}
     }
 
 }

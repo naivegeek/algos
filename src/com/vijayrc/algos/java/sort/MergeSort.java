@@ -14,18 +14,15 @@ import java.util.List;
  * Does not require random access to data
  */
 public class MergeSort<T extends Comparable> extends AbstractSort<T> {
+    public void on(List<T> input) {recurse(input);}
 
-    public void on(List<T> input) {
-        mergeSort(input);
-    }
-
-    private void mergeSort(List<T> input) {
+    private void recurse(List<T> input) {
         int size = input.size();
         if (size < 2) return;
         int mid = size / 2;
 
-        mergeSort(input.subList(0, mid));
-        mergeSort(input.subList(mid, size));
+        recurse(input.subList(0, mid));
+        recurse(input.subList(mid, size));
 
         List<T> A = input.subList(0, mid);
         List<T> B = input.subList(mid, size);
@@ -44,16 +41,11 @@ public class MergeSort<T extends Comparable> extends AbstractSort<T> {
         }
         if (c1 < A.size()) C.addAll(A.subList(c1, A.size()));
         if (c2 < B.size()) C.addAll(B.subList(c2, B.size()));
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
             input.set(i, C.get(i));
-        }
     }
-    public static class MergeSortTest extends SortTest{
+    public static class Zest extends SortTest{
         @Before
-        public void setup(){
-            plug(new MergeSort());
-        }
+        public void setup(){plug(new MergeSort());}
     }
-
-
 }

@@ -17,19 +17,14 @@ import java.util.List;
  * Very low overhead
  */
 public class InsertionSort<T extends Comparable> extends AbstractSort<T>{
-
     public void on(List<T> input) {
         for (int i = 0; i < input.size(); i++)
             for (int j = i; j > 0; j--)
                 if (input.get(j).compareTo(input.get(j - 1)) < 0)
                     swap(input, j, j - 1);
     }
-    public static class InsertionSortTest extends SortTest{
+    public static class Zest extends SortTest{
         @Before
-        public void setup(){
-            plug(new InsertionSort());
-        }
+        public void setup(){plug(new InsertionSort());}
     }
-
-
 }

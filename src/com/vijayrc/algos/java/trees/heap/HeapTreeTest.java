@@ -13,7 +13,7 @@ public class HeapTreeTest {
 
     @Test
     public void shouldWorkForMax() {
-        HeapMaxStrategy strategy = new HeapMaxStrategy();
+        HeapMax strategy = new HeapMax();
         tree = new HeapTree<Integer>(strategy);
         List<Integer> list = Arrays.asList(1, 6, 13, 3, 5, 8, 14, 4, 2, 9, 7, 10, 15, 11, 12, 0);
         for (Integer item : list) {
@@ -29,7 +29,7 @@ public class HeapTreeTest {
 
     @Test
     public void shouldWorkForMin() {
-        HeapMinStrategy strategy = new HeapMinStrategy();
+        HeapMin strategy = new HeapMin();
         tree = new HeapTree<Integer>(strategy);
         List<Integer> list = Arrays.asList(1, 6, 13, 3, 5, 8, 14, 4, 2, 9, 7, 10, 15, 11, 12);
         for (Integer item : list) {
@@ -45,7 +45,7 @@ public class HeapTreeTest {
 
     @Test
     public void shouldReturnLastLeafValue() {
-        HeapMaxStrategy strategy = new HeapMaxStrategy();
+        HeapMax strategy = new HeapMax();
         tree = new HeapTree<Integer>(strategy);
         List<Integer> list = Arrays.asList(1, 4, 3, 2, 7);
         for (Integer item : list) {

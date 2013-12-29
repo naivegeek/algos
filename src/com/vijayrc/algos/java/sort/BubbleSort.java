@@ -13,7 +13,6 @@ import java.util.List;
  * Flag 'swapped' is good bcos it can break loop if remaining subset is already sorted
  */
 public class BubbleSort<T extends Comparable> extends AbstractSort<T> {
-
     public void on(List<T> input) {
         boolean swapped;
         for (int i = 0; i < input.size(); i++) {
@@ -23,16 +22,13 @@ public class BubbleSort<T extends Comparable> extends AbstractSort<T> {
                     swap(input, j, j - 1);
                     swapped = true;
                 }
-
             }
             if (!swapped) break;
         }
     }
-    public class BubbleSortTest extends SortTest{
+    public static class Zest extends SortTest{
         @Before
-        public void setup(){
-            plug(new BubbleSort());
-        }
+        public void setup(){plug(new BubbleSort());}
     }
 
 }

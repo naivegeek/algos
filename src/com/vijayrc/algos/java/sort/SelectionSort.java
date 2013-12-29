@@ -24,11 +24,8 @@ public class SelectionSort<T extends Comparable> extends AbstractSort<T> {
                 if (input.get(j).compareTo(input.get(i)) < 0)
                     swap(input, j, i);
     }
-    public static class SelectionSortTest extends SortTest {
+    public static class Zest extends SortTest {
         @Before
-        public void setup(){
-            plug(new SelectionSort());
-        }
+        public void setup(){plug(new SelectionSort());}
     }
-
 }

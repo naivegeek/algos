@@ -19,18 +19,15 @@ public class ShellSort<T extends Comparable> extends AbstractSort<T> {
         while (gap > 0) {
             for (int i = 0; i < input.size(); i++) {
                 next = i + gap;
-                if (next < input.size() && input.get(next).compareTo(input.get(i)) < 0) {
+                if (next < input.size() && input.get(next).compareTo(input.get(i)) < 0)
                     swap(input, next, i);
-                }
             }
             gap--;
         }
     }
-    public static class ShellSortTest extends SortTest{
+    public static class Zest extends SortTest{
         @Before
-        public void setup(){
-            plug(new ShellSort());
-        }
+        public void setup(){plug(new ShellSort());}
     }
 
 }
