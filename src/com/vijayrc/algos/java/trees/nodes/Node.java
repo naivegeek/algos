@@ -149,11 +149,10 @@ public class Node<T extends Comparable> implements Printable {
             if (child != null) child.balance();
         }
     }
-
     private void rotateLeft() {
         Node<T> A = left;
         Node<T> B = right;
-        Node<T> R = new Node<T>(value, B);
+        Node<T> R = new Node<>(value, B);
         R.left = A;
         A.parent = R;
         R.right = (B != null) ? B.left : null;
@@ -162,11 +161,10 @@ public class Node<T extends Comparable> implements Printable {
         else if (isLChild()) parent.left = B;
         B.left = R;
     }
-
     private void rotateRight() {
         Node<T> A = left;
         Node<T> B = right;
-        Node<T> R = new Node<T>(value, A);
+        Node<T> R = new Node<>(value, A);
         R.left = (A != null) ? A.right : null;
         R.right = B;
 
@@ -174,11 +172,9 @@ public class Node<T extends Comparable> implements Printable {
         else if (isLChild()) parent.left = A;
         A.right = R;
     }
-
     private boolean isLChild() {
         return parent != null && parent.left != null && parent.left.equals(this);
     }
-
     private boolean isRChild() {
         return parent != null && parent.right != null && parent.right.equals(this);
     }
