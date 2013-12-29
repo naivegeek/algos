@@ -7,38 +7,25 @@ import static junit.framework.Assert.assertEquals;
 public class Queue<T extends Object> {
     private Node<T> head;
     private Node<T> tail;
-
-    public void put(T t) {
-        Node<T> node = new Node<T>(t);
+    public boolean isEmpty(){return head == null;}
+    public Queue<T> put(T t) {
+        Node<T> node = new Node<>(t);
         if (head == null) {
-            head = node;
-            tail = head;
-            return;
+            head = node; tail = head; return this;
         }
-        tail.next = node;
-        tail = node;
+        tail.next = node; tail = node; return this;
     }
-
     public T get() {
-        Node<T> toDequeue = head;
-        if (head != null) {
-            head = head.next;
-            return toDequeue.value();
-        }
-        return null;
+        if (head == null) return null;
+        Node<T> pop = head;
+        head = head.next;
+        return pop.value();
     }
-
-    public boolean isEmpty(){
-        return head == null;
-    }
-
-    public class QueueTest {
+    public static class Zest {
         @Test
         public void shouldWork() {
-            Queue<String> q = new Queue<String>();
-            q.put("A");
-            q.put("B");
-            q.put("C");
+            Queue<String> q = new Queue<>();
+            q.put("A").put("B").put("C");
             assertEquals("A",q.get());
             assertEquals("B",q.get());
             assertEquals("C",q.get());

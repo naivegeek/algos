@@ -1,25 +1,26 @@
 package com.vijayrc.algos.java.lists;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
 /**
- *
  * log2n doubling for n insertions if we start with a array of size 1
+ * TODO fix growth and shrink logic, refer scala
  */
-public class ArrayList<T extends Object> {
+public class ArrayList<T> {
     private Object[] array;
     public ArrayList(Integer size) {this.array = new Object[size]; }
+    public Integer size() { return array.length;}
 
-    public void add(T t) {
-        if (addToArray(t)) return;
+    public ArrayList<T> add(T t) {
+        if (addToArray(t)) return this;
         Object[] newArray = new Object[2 * array.length];
         for(int i = 0; i < array.length; i++)
             newArray[i] = array[i];
         array = newArray;
         addToArray(t);
+        return this;
     }
     private boolean addToArray(T t) {
         boolean isAdded = false;
@@ -31,24 +32,13 @@ public class ArrayList<T extends Object> {
             }
         return isAdded;
     }
-    public Integer size() {
-        return array.length;
-    }
-    public static class ArrayListTest {
-        private ArrayList<String> list;
 
-        @Before
-        public void setup(){
-            list = new ArrayList<String>(2);
-        }
-
+    public static class Zest {
+        private ArrayList<String> list = new ArrayList<>(2);
         @Test
         public void shouldAddElement() {
-            list.add("A");
-            list.add("B");
-            list.add("C");
-            list.add("D");
-            assertEquals(new Integer(4),list.size());
+            list.add("A").add("B").add("C").add("D");
+            assertTrue(list.size() == 4);
         }
     }
 

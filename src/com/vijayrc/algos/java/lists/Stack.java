@@ -4,37 +4,27 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 
-public class Stack<T extends Object> {
+public class Stack<T> {
     private Node<T> tail;
-
-    public void push(T t) {
-        Node<T> node = new Node<T>(t);
-        node.next = tail;
-        tail = node;
+    public Stack<T> push(T t) {
+        Node<T> node = new Node<>(t);
+        node.next = tail; tail = node;
+        return this;
     }
-
     public T pop() {
+        if (tail == null) return null;
         Node<T> toPop = tail;
-        if (tail != null) {
-            tail = tail.next;
-            return toPop.value();
-        }
-        return null;
+        tail = tail.next;
+        return toPop.value();
     }
-
-    public static class StackTest {
-
+    public static class Zest {
         @Test
         public void shouldWork() {
-            Stack<String> stack = new Stack<String>();
-            stack.push("A");
-            stack.push("B");
-            stack.push("C");
+            Stack<String> stack = new Stack<>();
+            stack.push("A").push("B").push("C");
             assertEquals("C",stack.pop());
             assertEquals("B",stack.pop());
             assertEquals("A",stack.pop());
         }
     }
-
-
 }

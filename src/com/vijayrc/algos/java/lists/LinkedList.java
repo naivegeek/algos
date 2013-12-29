@@ -1,84 +1,46 @@
 package com.vijayrc.algos.java.lists;
 
-import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
-import static junit.framework.Assert.assertEquals;
-
-public class LinkedList<T extends Object> {
+public class LinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
-
-    public LinkedList() {
-    }
-
-    public void add(T t) {
-        Node<T> item = new Node<T>(t);
-        if (head == null) {
-            head = item;
-            tail = head;
-            return;
-        }
-        tail.next = item;
-        tail = item;
-    }
-
-    public void remove(T t) {
-        Node<T> toRemove = new Node<T>(t);
-        if (toRemove.equals(head)) head = head.next;
-        for (Node<T> node = head; node != null;) {
-            if (toRemove.equals(node.next)) {
-                node.next = node.next.next;
-                break;
-            }
-            node = node.next;
-        }
-    }
-
-    public Integer size() {
+    public int size() {
         int count = 0;
         for (Node<T> node = head; node != null;) {
-            count++;
-            node = node.next;
+            count++; node = node.next;
         }
         return count;
     }
-    public static class LinkedListTest {
-
-        private LinkedList<String> list;
-
-        @Before
-        public void setup() {
-            list = new LinkedList<String>();
+    public LinkedList<T> add(T t) {
+        Node<T> item = new Node<>(t);
+        if (head == null) {
+            head = item; tail = head; return this;
         }
-
-        @Test
-        public void shouldAddItem() {
-            list.add("Cartman");
-            list.add("Kyle");
-            list.add("Kenny");
-            assertEquals(new Integer(3), list.size());
+        tail.next = item; tail = item; return this;
+    }
+    public LinkedList<T> remove(T t) {
+        Node<T> toRemove = new Node<>(t);
+        if (toRemove.equals(head)) head = head.next;
+        for (Node<T> node = head; node != null;) {
+            if (toRemove.equals(node.next)) {
+                node.next = node.next.next; break;
+            }
+            node = node.next;
         }
-
+        return this;
+    }
+    public static class Zest {
+        private LinkedList<String> list = new LinkedList<>();
         @Test
-        public void shouldRemoveItem() {
-            list.add("Cartman");
-            list.add("Kyle");
-            list.add("Kenny");
-
-            list.remove("Kyle");
-            assertEquals(new Integer(2), list.size());
-
-            list.add("Jimmy");
-            list.add("Butters");
-
-            list.remove("Cartman");
-            assertEquals(new Integer(3), list.size());
+        public void shouldAddAndRemoveItem() {
+            list.add("Cartman").add("Kyle").add("Kenny").remove("Kyle");
+            assertTrue(list.size() == 2);
+            list.add("Jimmy").add("Butters").remove("Cartman");
+            assertTrue(list.size() == 3);
             list.remove("Butters");
-            assertEquals(new Integer(2), list.size());
-
+            assertTrue(list.size() == 2);
         }
     }
-
-
 }
