@@ -8,11 +8,11 @@ import static junit.framework.Assert.assertNotNull;
 
 /**
  * BABAABAZBABAABAZ
- *
+ * TODO looks incomplete
  */
 public class LZW {
-    private Map<Integer, String> table = new HashMap<Integer, String>();
-    private List<Integer> codes = new ArrayList<Integer>();
+    private Map<Integer, String> table = new HashMap<>();
+    private List<Integer> codes = new ArrayList<>();
 
     public void compress(String input) {
         int code = 1;
@@ -38,9 +38,7 @@ public class LZW {
     private Integer getCode(String p) {
         return null;
     }
-    public List<Integer> codes() {
-        return codes;
-    }
+    public List<Integer> codes() {return codes; }
     public static class LZWTest {
         @Test
         public void shouldWork() {
@@ -49,7 +47,6 @@ public class LZW {
             lzw.compress(input);
             assertNotNull(lzw.codes());
         }
-
     }
 
 }

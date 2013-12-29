@@ -7,43 +7,36 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 
 public class Duplicates<T extends Comparable> {
-    public void on(List<T> input) {
+    public void withSort(List<T> input) {
         new InsertionSort<T>().on(input);
         for (int j = input.size() - 1; j > 0; j--)
             if (input.get(j).compareTo(input.get(j - 1)) == 0)
                 input.remove(j);
     }
-    public void on2(List<T> input) {
+    public void withoutSort(List<T> input) {
         for (int i = input.size() - 1; i >= 0; i--)
             for (int j = i - 1; j >= 0; j--)
                 if (input.get(j).compareTo(input.get(i)) == 0) { input.remove(i); break; }
     }
-
-    public class DuplicateTest {
-        Duplicates<String> remover = new Duplicates<String>();
-
+    public static class Zest {
+        Duplicates<String> duplicates = new Duplicates<>();
         @Test
         public void shouldWorkWithSort() {
-            List<String> actual = new ArrayList<String>();
-            actual.addAll(Arrays.asList("A", "A", "B", "C", "X", "C", "B"));
-            List<String> expected = new ArrayList<String>();
-            expected.addAll(Arrays.asList("A", "B", "C", "X"));
-            remover.on(actual);
+            List<String> actual = new ArrayList<>(); actual.addAll(asList("A", "A", "B", "C", "X", "C", "B"));
+            List<String> expected = new ArrayList<>(); expected.addAll(asList("A", "B", "C", "X"));
+            duplicates.withSort(actual);
             assertEquals(expected, actual);
         }
-
         @Test
         public void shouldWorkWithoutSort() {
-            List<String> actual = new ArrayList<String>();
-            actual.addAll(Arrays.asList("A", "A", "B", "C", "X", "C", "B"));
-            List<String> expected = new ArrayList<String>();
-            expected.addAll(Arrays.asList("A", "B", "C", "X"));
-            remover.on2(actual);
+            List<String> actual = new ArrayList<>(); actual.addAll(asList("A", "A", "B", "C", "X", "C", "B"));
+            List<String> expected = new ArrayList<>(); expected.addAll(asList("A", "B", "C", "X"));
+            duplicates.withoutSort(actual);
             assertEquals(expected, actual);
         }
-
     }
 }

@@ -3,6 +3,7 @@ package com.vijayrc.algos.java.search;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PatternMatch {
     //O(n*m)
@@ -20,16 +21,13 @@ public class PatternMatch {
         }
         return match;
     }
-
-    public static class PatternMatchTest {
+    public static class Zest {
         @Test
-        public void shouldFindPatternMatch() {
+        public void shouldMatch() {
             PatternMatch patternMatch = new PatternMatch();
-            assertEquals(new Integer(4), patternMatch.count("ABAABABBAB", "AB"));
-            assertEquals(new Integer(3), patternMatch.count("ABAABABBABA", "ABA"));
-            assertEquals(new Integer(1), patternMatch.count("ABAABABBABA", "BABA"));
-            assertEquals(new Integer(1), patternMatch.count("ABAABABBABA", "ABAABABBABA"));
+            assertTrue(patternMatch.count("ABAABABBAB", "AB") == 4);
+            assertTrue(patternMatch.count("ABAABABBAB", "ABA") == 2);
+            assertTrue(patternMatch.count("ABAABABABAB", "BABA") == 2);
         }
     }
-
 }
