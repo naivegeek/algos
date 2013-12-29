@@ -13,26 +13,11 @@ public class Node<T extends Comparable> implements Printable {
     public Node<T> right;
     public Node<T> left;
     public Node<T> parent;
-
-    public Node() {
-    }
-
-    public Node(T value) {
-        this.value = value;
-    }
-
-    public Node(T value, Node<T> parent) {
-        this.value = value;
-        this.parent = parent;
-    }
-
-    public T value() {
-        return value;
-    }
-
-    public List<Node<T>> children() {
-        return Arrays.asList(right, left);
-    }
+    public Node() {}
+    public Node(T value) {this.value = value;}
+    public Node(T value, Node<T> parent) {this.value = value; this.parent = parent;}
+    public T value() {return value;}
+    public List<Node<T>> children() {return Arrays.asList(right, left);}
 
     public void insert(T t) {
         if (value == null) {
@@ -47,17 +32,14 @@ public class Node<T extends Comparable> implements Printable {
             else right.insert(t);
         }
     }
-
     public boolean exists(T t) {
         if (t.equals(value)) return true;
         if (t.compareTo(value) > 0 && right != null) return right.exists(t);
-        else if (left != null) return left.exists(t);
-        else return false;
+        else return left != null && left.exists(t);
     }
-
-    public Integer occurrences(T t) {
+    public int occurrences(T t) {
         if (t.equals(value)) {
-            Integer count = 1;
+            int count = 1;
             Node node = right;
             while (node != null) {
                 count++;
@@ -69,7 +51,6 @@ public class Node<T extends Comparable> implements Printable {
         else if (left != null) return left.occurrences(t);
         else return 0;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,16 +59,10 @@ public class Node<T extends Comparable> implements Printable {
         if (value != null ? !value.equals(node.value) : node.value != null) return false;
         return true;
     }
-
     @Override
-    public int hashCode() {
-        return value != null ? value.hashCode() : 0;
-    }
-
+    public int hashCode() {return value != null ? value.hashCode() : 0;}
     @Override
-    public String toString() {
-        return value != null ? value.toString() : "*";
-    }
+    public String toString() {return value != null ? value.toString() : "*";}
 
     public String preOrder() {
         StringBuilder b = new StringBuilder();
@@ -96,7 +71,6 @@ public class Node<T extends Comparable> implements Printable {
         if (right != null) b.append(right.preOrder());
         return b.toString();
     }
-
     public String postOrder() {
         StringBuilder b = new StringBuilder();
         if (left != null) b.append(left.postOrder());
@@ -104,7 +78,6 @@ public class Node<T extends Comparable> implements Printable {
         b.append(value);
         return b.toString();
     }
-
     public String inOrder() {
         StringBuilder b = new StringBuilder();
         if (left != null) b.append(left.inOrder());
@@ -112,30 +85,22 @@ public class Node<T extends Comparable> implements Printable {
         if (right != null) b.append(right.inOrder());
         return b.toString();
     }
-
-    public List<Printable> printables() {
-        return new ArrayList<Printable>(children());
-    }
-
-    public void print() {
-        new Print().with(this);
-    }
+    public List<Printable> printables() {return new ArrayList<Printable>(children());}
+    public void print() {new Print().with(this);}
 
     public String pathOf(T t) {
         if (value.equals(t)) return "";
         StringBuilder b = new StringBuilder();
-        if (right != null) b.append("1" + right.pathOf(t));
-        else if (left != null) b.append("0" + left.pathOf(t));
+        if (right != null) b.append("1").append(right.pathOf(t));
+        else if (left != null) b.append("0").append(left.pathOf(t));
         return b.toString();
     }
-
     public Integer height() {
         int rh = 0, lh = 0;
         if (right != null) rh = 1 + right.height();
         if (left != null) lh = 1 + left.height();
         return rh > lh ? rh : lh;
     }
-
     public void balance() {
         int r = 0, l = 0, d;
         if (right != null) r = right.height();
@@ -172,11 +137,7 @@ public class Node<T extends Comparable> implements Printable {
         else if (isLChild()) parent.left = A;
         A.right = R;
     }
-    private boolean isLChild() {
-        return parent != null && parent.left != null && parent.left.equals(this);
-    }
-    private boolean isRChild() {
-        return parent != null && parent.right != null && parent.right.equals(this);
-    }
+    private boolean isLChild() {return parent != null && parent.left != null && parent.left.equals(this);}
+    private boolean isRChild() {return parent != null && parent.right != null && parent.right.equals(this);}
 }
 

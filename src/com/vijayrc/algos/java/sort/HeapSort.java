@@ -1,8 +1,5 @@
 package com.vijayrc.algos.java.sort;
 
-import com.vijayrc.algos.java.trees.heap.HeapMax;
-import com.vijayrc.algos.java.trees.heap.HeapMin;
-import com.vijayrc.algos.java.trees.heap.HeapStrategy;
 import com.vijayrc.algos.java.trees.heap.HeapTree;
 import org.junit.Test;
 

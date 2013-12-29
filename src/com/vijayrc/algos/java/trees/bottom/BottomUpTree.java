@@ -16,58 +16,40 @@ import static junit.framework.Assert.assertNotNull;
 public class BottomUpTree<T extends Comparable> {
     private BigNode<T> root;
     private Integer leaves;
-
-    public BottomUpTree(Integer leaves) {
-        this.leaves = leaves;
-    }
+    public BottomUpTree(Integer leaves) {this.leaves = leaves;}
 
     public BigNode<T> on(List<T> list) {
-        List<BigNode<T>> nodes = new ArrayList<BigNode<T>>();
-        for (int i = 0; i < list.size(); i++)
-            nodes.add(new BigNode<T>(list.get(i)));
+        List<BigNode<T>> nodes = new ArrayList<>();
+        for (T item : list) nodes.add(new BigNode<>(item));
         recurse(nodes);
         return root;
     }
-
     private void recurse(List<BigNode<T>> nodes) {
-        List<BigNode<T>> subNodes = new ArrayList<BigNode<T>>();
+        List<BigNode<T>> subNodes = new ArrayList<>();
         if (nodes.size() <= leaves) {
-            root = new BigNode<T>();
+            root = new BigNode<>();
             for (BigNode<T> node : nodes) root.addChild(node);
             return;
         }
         for (int i = 0; (i + leaves) <= nodes.size(); i = i + leaves) {
-            BigNode<T> join = new BigNode<T>();
-            for (int j = 0; j < leaves; j++) {
+            BigNode<T> join = new BigNode<>();
+            for (int j = 0; j < leaves; j++)
                 join.addChild(nodes.get(i + j));
-            }
             subNodes.add(join);
         }
         if (nodes.size() % leaves != 0)
             subNodes.add(nodes.get(nodes.size() - 1));
         recurse(subNodes);
     }
+    public void print() {new Print().with(root);}
 
-    public void print() {
-       new Print().with(root);
-    }
-
-    public static class BottomUpTreeTest {
-        private BottomUpTree<String> tree;
-
-        @Before
-        public void setup() {
-            tree = new BottomUpTree<String>(3);
-        }
-
+    public static class Zest {
+        private BottomUpTree<String> tree = new BottomUpTree<>(3);
         @Test
         public void shouldWork() {
-            BigNode<String> root = tree.on(Arrays.asList("Bebe", "Butters", "Cartman", "Clyde",
-                    "Jimmy", "Kenny", "Kyle", "Stan",
-                    "Timmy", "Token", "Wendy"));
+            BigNode<String> root = tree.on(Arrays.asList("Bebe", "Butters", "Cartman", "Clyde","Jimmy", "Kenny", "Kyle", "Stan", "Timmy", "Token", "Wendy"));
             assertNotNull(root);
             tree.print();
         }
     }
-
 }
