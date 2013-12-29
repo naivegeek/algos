@@ -42,7 +42,6 @@ class WithArray(val initialSz:Integer) extends Stack{
     arr = temp
   }
 }
-
 /**
 * just have a head node linking others
 * no need to worry about growth hacking
@@ -68,8 +67,8 @@ class WithLinks extends Stack{
       temp = temp.next
     }
   }
-}
-class Node(val value:Any, val next:Node){
-  def print = value.toString
+  class Node(val value:Any, val next:Node){
+    def print = value.toString
+  }
 }
 
