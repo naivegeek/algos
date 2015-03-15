@@ -10,3 +10,4 @@ dependencies{
 repositories{
     mavenCentral()
 }
+sourceCompatibility = '1.7'
